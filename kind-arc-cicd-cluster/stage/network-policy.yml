@@ -4,6 +4,7 @@ metadata:
   name: stage-network-policy
   namespace: stage
 spec:
+  podSelector: {}
   policyTypes:
     - Ingress
   ingress:
