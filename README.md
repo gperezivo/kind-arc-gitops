@@ -1,0 +1,1 @@
+# kind-azure-arc-config
