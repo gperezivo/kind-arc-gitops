@@ -11,7 +11,7 @@ spec:
     - from:
         - namespaceSelector:
             matchLabels:
-              kubernetes.io/metadata.name: stage
+              kubernetes.io/metadata.name: dev-team-1
       ports:
         - protocol: TCP
           port: 80
