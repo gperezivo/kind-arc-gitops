@@ -27,7 +27,8 @@ jobs:
           gh auth login --with-token < .githubtoken
           gh release download --repo gperezivo/${{ github.event.client_payload.app }}  ${{ github.event.client_payload.version }} -D /tmp/${{ github.event.client_payload.app }}
           tar -xvzf /tmp/${{ github.event.client_payload.app }}/*.tgz -C /tmp/${{ github.event.client_payload.app }}
-          cp /tmp/${{ github.event.client_payload.app }}/release/* apps/${{ github.event.client_payload.app }}
+          cp -r /tmp/${{ github.event.client_payload.app }}/release/* apps/${{ github.event.client_payload.app }}
+          ls -la apps/${{ github.event.client_payload.app }}
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v4
