@@ -32,7 +32,7 @@ jobs:
         uses: karancode/kustomize-github-action@master
         with:
           kustomize_version: '3.0.0'
-          kustomize_build_dir: 'apps/${{ github.event.client_payload.app }}'
+          kustomize_build_dir: 'apps/${{ github.event.client_payload.app }}/overlays/dev'
           kustomize_comment: true
           kustomize_output_file: "kind-arc-cicd-cluster/dev-team-1/${{ github.event.client_payload.app }}.yaml"
           kustomize_build_options: "--load_restrictor none"
