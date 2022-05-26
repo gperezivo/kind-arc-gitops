@@ -16,7 +16,7 @@ jobs:
           IMAGE_VERSION=$(cat version.properties)
           echo "IMAGE_VERSION=$IMAGE_VERSION" >> $GITHUB_ENV
           eval "echo \"$(cat apps/simple-api/overlays/dev/simple-api-template.yml)\"" > apps/simple-api/overlays/dev/simple-api.yml
-          
+          cat apps/simple-api/overlays/dev/simple-api.yml
       - name: 'Kustomize Build simple-api'
         uses: karancode/kustomize-github-action@master
         with:
