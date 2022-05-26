@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: |
-          IMAGE_VERSION=$(cat version.properties)
+          IMAGE_VERSION=$(cat apps/simple-api/version.properties)
           echo "IMAGE_VERSION=$IMAGE_VERSION" >> $GITHUB_ENV
           eval "echo \"$(cat apps/simple-api/overlays/dev/simple-api-template.yml)\"" > apps/simple-api/overlays/dev/simple-api.yml
           cat apps/simple-api/overlays/dev/simple-api.yml
