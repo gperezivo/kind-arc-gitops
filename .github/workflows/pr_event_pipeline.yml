@@ -45,6 +45,7 @@ jobs:
           draft: false
           token: "${{ secrets.RELEAE_ACCESS_TOKEN }}"
           branch: auto-deploy/${{ github.event.client_payload.app }}-${{ github.event.client_payload.version }}
+          branch-suffix: timestamp
           delete-branch: true
          
 
