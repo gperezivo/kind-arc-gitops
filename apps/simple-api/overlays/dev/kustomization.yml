@@ -4,3 +4,21 @@ bases:
 - ../../base
 patchesStrategicMerge:
 - simple-api.yml
+patchesJson6902:
+  - patch: |
+      - op: replace
+        path: /metadata/namespace
+        value: dev-team-1
+    target:
+      group: apps
+      version: v1
+      kind: Deployment
+      name: simple-api
+  - patch: |
+      - op: replace
+        path: /metadata/namespace
+        value: dev-team-1
+    target:
+      version: v1
+      kind: Service
+      name: simple-api
