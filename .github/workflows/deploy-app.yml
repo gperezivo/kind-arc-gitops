@@ -22,10 +22,21 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        env: 
-          app_name: ${{ github.event.client_payload.app }}
-        run: echo $app_name
-
+      - run: | 
+          echo "${{ secrets.RELEAE_ACCESS_TOKEN }}" > .githubtoken
+          gh auth login --with-token < .githubtoken
+          gh release download --repo gperezivo/${{ github.event.client_payload.app }}}  ${{ github.event.client_payload.version }} -D apps/${{ github.event.client_payload.app }}
+          tar -xvzf apps/${{ github.event.client_payload.app }}/release-apps/${{ github.event.client_payload.version }}.tar.gz -C apps/${{ github.event.client_payload.version }}
+      
+      - name: 'Kustomize Build'
+        uses: karancode/kustomize-github-action@master
+        with:
+          kustomize_version: '3.0.0'
+          kustomize_build_dir: 'apps/${{ github.event.client_payload.app }}'
+          kustomize_comment: true
+          kustomize_output_file: "kind-arc-cicd-cluster/dev-team-1/${{ github.event.client_payload.app }}.yaml"
+          kustomize_build_options: "--load_restrictor none"
+          enable_alpha_plugins: true
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
    

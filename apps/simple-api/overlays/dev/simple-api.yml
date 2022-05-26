@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-api
+  namespace: default
+  labels:
+    app: simple-api
+    stack: dotnet
+    version: $(IMAGE_VERSION)
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simple-api-pod
+  template:
+    metadata:
+      labels:
+        app: simple-api-pod
+    spec:
+      containers:
+      - name: api
+        image: gperezivo/simple-api:$(IMAGE_VERSION)
+        
+        env:
+        - name: MyVar
+          valueFrom: 
+            fieldRef:
+              fieldPath: metadata.labels.version
+        - name: MyVar2
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
