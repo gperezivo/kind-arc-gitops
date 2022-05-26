@@ -4,7 +4,7 @@ on:
     branches: 
       - main
     paths:
-      - apps/simple-api
+      - apps/simple-api/**
   
 
 jobs:
