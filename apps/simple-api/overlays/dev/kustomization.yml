@@ -3,4 +3,4 @@ kind: Kustomization
 bases:
 - ../../base
 patchesStrategicMerge:
-- simple-api.yaml
+- simple-api.yml
