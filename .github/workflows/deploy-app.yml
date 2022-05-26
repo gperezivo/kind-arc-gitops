@@ -28,16 +28,34 @@ jobs:
           gh release download --repo gperezivo/${{ github.event.client_payload.app }}  ${{ github.event.client_payload.version }} -D /tmp/${{ github.event.client_payload.app }}
           tar -xvzf /tmp/${{ github.event.client_payload.app }}/*.tgz -C /tmp/${{ github.event.client_payload.app }}
           cp /tmp/${{ github.event.client_payload.app }}/release/${{ github.event.client_payload.app }}.yml apps/${{ github.event.client_payload.app }}/base/
-          
-      - name: 'Kustomize Build'
-        uses: karancode/kustomize-github-action@master
-        with:
-          kustomize_version: '3.0.0'
-          kustomize_build_dir: 'apps/${{ github.event.client_payload.app }}/overlays/dev'
-          kustomize_comment: true
-          kustomize_output_file: "kind-arc-cicd-cluster/dev-team-1/${{ github.event.client_payload.app }}.yaml"
-          kustomize_build_options: "--load_restrictor none"
-          enable_alpha_plugins: true
-        env:
-          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v4
+        with:        
+          title: "Deploy ${{ github.event.client_payload.app }} ${{ github.event.client_payload.version }}"
+          body: "Deploy ${{ github.event.client_payload.app }} ${{ github.event.client_payload.version }}"
+          add-paths:
+            - apps/${{ github.event.client_payload.app }}/base/
+            - kind-arc-cicd-cluster/dev-team-1/
+          labels: |
+            automated pr
+            deploy
+            ${{ github.event.client_payload.app }}
+          draft: false
+          token: "${{ secrets.RELEAE_ACCESS_TOKEN }}"
+          branch: auto-deploy/${{ github.event.client_payload.app }}-${{ github.event.client_payload.version }}
+          delete-branch: true
+         
+
+      # - name: 'Kustomize Build'
+      #   uses: karancode/kustomize-github-action@master
+      #   with:
+      #     kustomize_version: '3.0.0'
+      #     kustomize_build_dir: 'apps/${{ github.event.client_payload.app }}/overlays/dev'
+      #     kustomize_comment: true
+      #     kustomize_output_file: "kind-arc-cicd-cluster/dev-team-1/${{ github.event.client_payload.app }}.yaml"
+      #     kustomize_build_options: "--load_restrictor none"
+      #     enable_alpha_plugins: true
+      #   env:
+      #     GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
    
