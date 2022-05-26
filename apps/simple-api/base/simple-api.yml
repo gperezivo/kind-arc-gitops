@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-api
+  namespace: default
+  labels:
+    app: simple-api
+    stack: dotnet
+    version: dev
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simple-api-pod
+  template:
+    metadata:
+      labels:
+        app: simple-api-pod
+    spec:
+      containers:
+      - name: api
+        image: gperezivo/simple-api
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        env:
+        - name: MyVar
+          valueFrom: 
+            fieldRef:
+              fieldPath: metadata.labels.version
+        - name: MyVar2
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: simple-api
+  labels:
+    app: simple-api
+spec:
+  selector:
+    app: simple-api-pod
+  ports:
+  - port: 80
+    targetPort: 80
