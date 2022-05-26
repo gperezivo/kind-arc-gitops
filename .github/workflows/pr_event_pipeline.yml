@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: deploy_app
+name: create_pr_new_app
 
 # Controls when the workflow will run
 on:
@@ -27,7 +27,7 @@ jobs:
           gh auth login --with-token < .githubtoken
           gh release download --repo gperezivo/${{ github.event.client_payload.app }}  ${{ github.event.client_payload.version }} -D /tmp/${{ github.event.client_payload.app }}
           tar -xvzf /tmp/${{ github.event.client_payload.app }}/*.tgz -C /tmp/${{ github.event.client_payload.app }}
-          cp /tmp/${{ github.event.client_payload.app }}/release/${{ github.event.client_payload.app }}.yml apps/${{ github.event.client_payload.app }}/base/
+          cp /tmp/${{ github.event.client_payload.app }}/release/* apps/${{ github.event.client_payload.app }}
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v4

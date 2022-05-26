@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-api
+  namespace: dev-team-1
+  labels:
+    version: ${IMAGE_VERSION}
+
+spec:
+  replicas: 3  
+  template:    
+    spec:
+      containers:
+      - name: api
+        image: gperezivo/simple-api:${IMAGE_VERSION}
+      resources:
+        limits:
+          cpu: "400m"
+          memory: "300Mi"
+        requests:
+          cpu: "100m"
+          memory: "128Mi"
