@@ -1,0 +1,28 @@
+name: publish_auto_pr
+on:
+  push:
+    branches: 
+      - main
+    tags:
+     - deploy
+  
+
+jobs:
+  publish: 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: 'Kustomize Build simple-api'
+        uses: karancode/kustomize-github-action@master
+        with:
+          kustomize_version: '3.0.0'
+          kustomize_build_dir: 'apps/simple-api/overlays/dev'
+          kustomize_comment: true
+          kustomize_output_file: "kind-arc-cicd-cluster/dev-team-1/simple-api.yaml"
+          kustomize_build_options: "--load_restrictor none"
+          enable_alpha_plugins: true
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
+
+      
+  
