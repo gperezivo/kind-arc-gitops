@@ -5,6 +5,7 @@ on:
       - main
     paths:
       - apps/simple-api/**
+  workflow_dispatch:
   
 
 jobs:
