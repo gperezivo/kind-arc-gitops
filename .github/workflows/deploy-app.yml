@@ -34,9 +34,9 @@ jobs:
         with:        
           title: "Deploy ${{ github.event.client_payload.app }} ${{ github.event.client_payload.version }}"
           body: "Deploy ${{ github.event.client_payload.app }} ${{ github.event.client_payload.version }}"
-          add-paths:
-            - apps/${{ github.event.client_payload.app }}/base/
-            - kind-arc-cicd-cluster/dev-team-1/
+          add-paths: |
+            apps/${{ github.event.client_payload.app }}/base/
+            kind-arc-cicd-cluster/dev-team-1/
           labels: |
             automated pr
             deploy
