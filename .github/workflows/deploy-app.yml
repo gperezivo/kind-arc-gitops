@@ -25,8 +25,8 @@ jobs:
       - run: | 
           echo "${{ secrets.RELEAE_ACCESS_TOKEN }}" > .githubtoken
           gh auth login --with-token < .githubtoken
-          gh release download --repo gperezivo/${{ github.event.client_payload.app }}  ${{ github.event.client_payload.version }} -D apps/${{ github.event.client_payload.app }}
-          tar -xvzf apps/${{ github.event.client_payload.app }}/release-apps/${{ github.event.client_payload.version }}.tar.gz -C apps/${{ github.event.client_payload.version }}
+          gh release download --repo gperezivo/${{ github.event.client_payload.app }}  ${{ github.event.client_payload.version }} -D /tmp/${{ github.event.client_payload.app }}
+          tar -xvzf /tmp/${{ github.event.client_payload.app }}/*.tgz -C apps/${{ github.event.client_payload.version }}
       
       - name: 'Kustomize Build'
         uses: karancode/kustomize-github-action@master
