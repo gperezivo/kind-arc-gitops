@@ -4,7 +4,7 @@ metadata:
   labels:
     app: simple-api
   name: simple-api
-  namespace: dev
+  namespace: dev-team-1
 spec:
   ports:
   - port: 80
@@ -20,7 +20,7 @@ metadata:
     stack: dotnet
     version: 3.0.9
   name: simple-api
-  namespace: dev
+  namespace: dev-team-1
 spec:
   replicas: 3
   selector:
