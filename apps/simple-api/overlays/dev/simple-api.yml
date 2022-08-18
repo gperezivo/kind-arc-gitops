@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-api
+  labels:
+    version: 3.0.9
+
+spec:
+  replicas: 3  
+  template:    
+    spec:
+      containers:
+      - name: api
+        image: gperezivo/simple-api:3.0.9
+      resources:
+        limits:
+          cpu: 400m
+          memory: 300Mi
+        requests:
+          cpu: 100m
+          memory: 128Mi
