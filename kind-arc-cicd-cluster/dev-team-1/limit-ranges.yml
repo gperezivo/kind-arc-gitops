@@ -1,7 +1,8 @@
 apiVersion: v1
 kind: LimitRange
 metadata:
-  name: cpu-min-max-demo-lr
+  name: limit-ranges-dev-env
+  namespace: dev-team-1
 spec:
   limits:
   - max:
