@@ -18,7 +18,7 @@ metadata:
   labels:
     app: simple-api
     stack: dotnet
-    version: 3.0.9
+    version: 3.0.10
   name: simple-api
   namespace: dev-team-1
 spec:
@@ -34,12 +34,10 @@ spec:
       containers:
       - env:
         - name: MyVar
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.labels.version
+          value: My Var
         - name: MyVar2
           value: My new value
-        image: gperezivo/simple-api:3.0.9
+        image: gperezivo/simple-api:3.0.10
         imagePullPolicy: Always
         name: api
         ports:
