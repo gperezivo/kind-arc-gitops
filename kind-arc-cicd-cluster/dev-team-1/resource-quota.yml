@@ -5,7 +5,5 @@ metadata:
   namespace: dev-team-1
 spec:
   hard:
-    requests.cpu: "2"
-    requests.memory: 2Gi
-    limits.cpu: "4"
-    limits.memory: 4Gi
+    pods: 10
+    services: 2
