@@ -27,10 +27,14 @@ jobs:
           kustomize_output_file: "kind-arc-cicd-cluster/dev-team-1/simple-api.yaml"
           kustomize_build_options: "--load_restrictor none"
           enable_alpha_plugins: true
-      - run: |
-          cat kind-arc-cicd-cluster/dev-team-1/simple-api.yaml
         env:
           GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
+      - run: |
+          cat kind-arc-cicd-cluster/dev-team-1/simple-api.yaml
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        
+       
 
       
   
