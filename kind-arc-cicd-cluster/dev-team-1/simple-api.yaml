@@ -42,10 +42,10 @@ spec:
         name: api
         ports:
         - containerPort: 80
-      resources:
-        limits:
-          cpu: 400m
-          memory: 300Mi
-        requests:
-          cpu: 100m
-          memory: 128Mi
+        resources:
+          limits:
+            cpu: 400m
+            memory: 300Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
