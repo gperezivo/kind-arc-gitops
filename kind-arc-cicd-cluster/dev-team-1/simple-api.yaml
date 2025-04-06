@@ -37,7 +37,7 @@ spec:
           value: My Var
         - name: MyVar2
           value: My new value
-        image: gperezivo/simple-api:3.0.11
+        image: gperezivo/simple-api:9.0.0
         imagePullPolicy: Always
         name: api
         ports:
