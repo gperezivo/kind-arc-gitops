@@ -12,10 +12,10 @@ spec:
       containers:
       - name: api
         image: gperezivo/simple-api:${IMAGE_VERSION}
-      resources:
-        limits:
-          cpu: "200m"
-          memory: "300Mi"
-        requests:
-          cpu: "200m"
-          memory: "128Mi"
+        resources:
+          limits:
+            cpu: "200m"
+            memory: "300Mi"
+          requests:
+            cpu: "200m"
+            memory: "128Mi"
