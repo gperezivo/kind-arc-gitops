@@ -27,6 +27,7 @@ jobs:
           kustomize_output_file: "kind-arc-cicd-cluster/dev-team-1/simple-api.yaml"
           kustomize_build_options: "--load_restrictor none"
           enable_alpha_plugins: true
+          token: ${{ secrets.GITHUB_ACCESS_TOKEN }}
         env:
           GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
       - run: |
