@@ -14,8 +14,8 @@ spec:
         image: gperezivo/simple-api:${IMAGE_VERSION}
       resources:
         limits:
-          cpu: "400m"
+          cpu: "200m"
           memory: "300Mi"
         requests:
-          cpu: "100m"
+          cpu: "200m"
           memory: "128Mi"
